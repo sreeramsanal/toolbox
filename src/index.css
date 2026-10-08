@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-rgb: 250 250 250;
+    --surface-1-rgb: 255 255 255;
+    --surface-2-rgb: 243 244 246;
+    --surface-3-rgb: 229 231 235;
+    --border-rgb: 226 232 240;
+    --border-hover-rgb: 203 213 225;
+    --text-primary-rgb: 15 23 42;
+    --text-secondary-rgb: 51 65 85;
+    --text-muted-rgb: 100 116 139;
+    --brand-indigo: #4F46E5;
+    color-scheme: light;
+  }
+
+  .dark {
+    --bg-rgb: 11 12 14;
+    --surface-1-rgb: 20 22 26;
+    --surface-2-rgb: 27 30 36;
+    --surface-3-rgb: 35 39 47;
+    --border-rgb: 35 39 47;
+    --border-hover-rgb: 55 65 81;
+    --text-primary-rgb: 243 244 246;
+    --text-secondary-rgb: 156 163 175;
+    --text-muted-rgb: 107 114 128;
+    --brand-indigo: #6366F1;
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: rgb(var(--bg-rgb));
+    color: rgb(var(--text-primary-rgb));
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.45);
+}
+
+/* Tabular figures for numbers */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
