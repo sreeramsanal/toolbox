@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   Plus, 
   Search, 
   Trash2, 
   Edit3, 
   X, 
-  Check
+  Check,
+  ArrowLeft
 } from 'lucide-react';
 import type { Issue, IssuePriority, IssueStatus } from '../types/issue';
 import { getStoredIssues, saveStoredIssues } from '../utils/localStorage';
@@ -157,18 +159,28 @@ export const IssueTrackerPage: React.FC = () => {
       
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-        <div>
-          <div className="text-[11px] font-mono uppercase tracking-wider text-brand-purple mb-1 flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-purple animate-pulse"></span>
-            TASK MANAGEMENT • BACKLOG
+        <div className="flex items-center gap-3 sm:gap-3.5">
+          <Link
+            to="/"
+            title="Back to Home"
+            aria-label="Back to Home"
+            className="p-2 sm:p-2.5 rounded-xl border border-dark-border bg-dark-surface1 hover:bg-dark-surface2 text-dark-text-secondary hover:text-dark-text transition shadow-sm shrink-0"
+          >
+            <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+          </Link>
+          <div>
+            <div className="text-[11px] font-mono uppercase tracking-wider text-brand-purple mb-1 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-purple animate-pulse"></span>
+              TASK MANAGEMENT • BACKLOG
+            </div>
+            <h1 className="text-3xl font-bold tracking-tight text-dark-text">Issue Tracker</h1>
+            <p className="text-xs text-dark-text-muted mt-1">
+              Keep track of tasks, priorities, and workflow progress.
+            </p>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-dark-text">Issue Tracker</h1>
-          <p className="text-xs text-dark-text-muted mt-1">
-            Keep track of tasks, priorities, and workflow progress.
-          </p>
         </div>
 
-        <div className="flex items-center gap-2 text-xs font-mono text-dark-text-secondary bg-dark-surface1 px-3 py-1.5 rounded-lg border border-dark-border">
+        <div className="flex items-center gap-2 text-xs font-mono text-dark-text-secondary bg-dark-surface1 px-3 py-1.5 rounded-lg border border-dark-border self-start md:self-auto">
           <Check className="w-3.5 h-3.5 text-brand-emerald" />
           <span>Auto-saved</span>
           <span className="text-dark-border">•</span>
@@ -245,14 +257,14 @@ export const IssueTrackerPage: React.FC = () => {
       <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 p-4 rounded-xl bg-dark-surface1 border border-dark-border mb-6">
         
         {/* Search */}
-        <div className="relative flex-1">
+        <div className="relative flex-1 min-w-0">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-dark-text-muted" />
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search issues, labels, or #id..."
-            className="w-full bg-dark-surface2 text-dark-text placeholder:text-dark-text-muted pl-9 pr-4 py-2 rounded-lg border border-dark-border text-xs focus:border-brand-indigo focus:outline-none"
+            className="w-full min-w-0 bg-dark-surface2 text-dark-text placeholder:text-dark-text-muted pl-9 pr-4 py-2 rounded-lg border border-dark-border text-xs focus:border-brand-indigo focus:outline-none"
           />
         </div>
 

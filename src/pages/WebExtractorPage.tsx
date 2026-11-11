@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   Globe, 
   Copy, 
@@ -13,7 +14,8 @@ import {
   Image as ImageIcon, 
   Code, 
   Layers, 
-  Sparkles
+  Sparkles,
+  ArrowLeft
 } from 'lucide-react';
 import type { 
   ExtractedPageData, 
@@ -170,18 +172,28 @@ export const WebExtractorPage: React.FC = () => {
       
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-        <div>
-          <div className="text-[11px] font-mono uppercase tracking-wider text-brand-emerald mb-1 flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-emerald animate-pulse"></span>
-            WEB UTILITY • ONE URL AT A TIME
+        <div className="flex items-center gap-3 sm:gap-3.5">
+          <Link
+            to="/"
+            title="Back to Home"
+            aria-label="Back to Home"
+            className="p-2 sm:p-2.5 rounded-xl border border-dark-border bg-dark-surface1 hover:bg-dark-surface2 text-dark-text-secondary hover:text-dark-text transition shadow-sm shrink-0"
+          >
+            <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+          </Link>
+          <div>
+            <div className="text-[11px] font-mono uppercase tracking-wider text-brand-emerald mb-1 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-emerald animate-pulse"></span>
+              WEB UTILITY • ONE URL AT A TIME
+            </div>
+            <h1 className="text-3xl font-bold tracking-tight text-dark-text">Web Extractor</h1>
+            <p className="text-xs text-dark-text-muted mt-1">
+              Extract useful information from any public webpage.
+            </p>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-dark-text">Web Extractor</h1>
-          <p className="text-xs text-dark-text-muted mt-1">
-            Extract useful information from any public webpage.
-          </p>
         </div>
 
-        <div className="flex items-center gap-2 text-xs font-mono text-dark-text-secondary bg-dark-surface1 px-3 py-1.5 rounded-lg border border-dark-border">
+        <div className="flex items-center gap-2 text-xs font-mono text-dark-text-secondary bg-dark-surface1 px-3 py-1.5 rounded-lg border border-dark-border self-start md:self-auto">
           <Globe className="w-3.5 h-3.5 text-brand-emerald" />
           <span>Article & Content Extractor</span>
         </div>
@@ -196,8 +208,8 @@ export const WebExtractorPage: React.FC = () => {
           }}
           className="flex flex-col sm:flex-row gap-3"
         >
-          <div className="relative flex-1 flex items-center bg-dark-surface2 rounded-xl border border-dark-border focus-within:border-brand-emerald transition-colors">
-            <span className="pl-3.5 text-dark-text-muted">
+          <div className="relative flex-1 min-w-0 flex items-center bg-dark-surface2 rounded-xl border border-dark-border focus-within:border-brand-emerald transition-colors">
+            <span className="pl-3.5 text-dark-text-muted shrink-0">
               <Globe className="w-4 h-4 text-brand-emerald" />
             </span>
             <input
@@ -205,13 +217,13 @@ export const WebExtractorPage: React.FC = () => {
               value={urlInput}
               onChange={(e) => setUrlInput(e.target.value)}
               placeholder="https://example.com/article"
-              className="w-full bg-transparent text-dark-text placeholder:text-dark-text-muted px-3 py-3 text-sm font-mono focus:outline-none"
+              className="w-full min-w-0 bg-transparent text-dark-text placeholder:text-dark-text-muted px-3 py-3 text-sm font-mono focus:outline-none"
             />
             {urlInput && (
               <button
                 type="button"
                 onClick={() => setUrlInput('')}
-                className="pr-3 text-xs text-dark-text-muted hover:text-dark-text font-mono"
+                className="pr-3 text-xs text-dark-text-muted hover:text-dark-text font-mono shrink-0"
               >
                 Clear
               </button>

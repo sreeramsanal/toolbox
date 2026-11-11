@@ -23,14 +23,14 @@ interface QuickSearchModalProps {
 
 const TOOLS = [
   { id: 'web-extractor', name: 'Web Extractor', desc: 'Extract useful information from any public webpage', path: '/web-extractor', icon: Globe, color: 'text-brand-emerald' },
-  { id: 'weather', name: 'Weather', desc: 'Current conditions and 5-day forecast', path: '/weather', icon: CloudSun, color: 'text-brand-cyan' },
-  { id: 'issues', name: 'Issue Tracker', desc: 'Local task and bug tracker', path: '/issues', icon: CheckSquare, color: 'text-brand-purple' },
-  { id: 'calculator', name: 'Calculator', desc: 'High-precision mathematical calculator', path: '/calculator', icon: Calculator, color: 'text-brand-emerald' },
   { id: 'github', name: 'GitHub Profile', desc: 'Inspect public developers and repositories', path: '/github', icon: GithubIcon, color: 'text-brand-indigo' },
-  { id: 'temperature', name: 'Temperature Converter', desc: 'Celsius, Fahrenheit, and Kelvin', path: '/temperature', icon: Thermometer, color: 'text-brand-cyan' },
-  { id: 'countdown', name: 'Countdown', desc: 'Milestone timers and deadlines', path: '/countdown', icon: Hourglass, color: 'text-brand-emerald' },
-  { id: 'alarm', name: 'Alarm Clock', desc: 'Browser-based acoustic alerts', path: '/alarm', icon: Bell, color: 'text-brand-purple' },
+  { id: 'issues', name: 'Issue Tracker', desc: 'Local task and bug tracker', path: '/issues', icon: CheckSquare, color: 'text-brand-purple' },
   { id: 'currency', name: 'Currency Tracker', desc: 'Live exchange rates and conversion', path: '/currency', icon: DollarSign, color: 'text-brand-cyan' },
+  { id: 'temperature', name: 'Temperature Converter', desc: 'Celsius, Fahrenheit, and Kelvin', path: '/temperature', icon: Thermometer, color: 'text-brand-cyan' },
+  { id: 'weather', name: 'Weather', desc: 'Current conditions and 5-day forecast', path: '/weather', icon: CloudSun, color: 'text-brand-cyan' },
+  { id: 'countdown', name: 'Countdown', desc: 'Milestone timers and deadlines', path: '/countdown', icon: Hourglass, color: 'text-brand-emerald' },
+  { id: 'calculator', name: 'Calculator', desc: 'High-precision mathematical calculator', path: '/calculator', icon: Calculator, color: 'text-brand-emerald' },
+  { id: 'alarm', name: 'Alarm Clock', desc: 'Browser-based acoustic alerts', path: '/alarm', icon: Bell, color: 'text-brand-purple' },
 ];
 
 export const QuickSearchModal: React.FC<QuickSearchModalProps> = ({ isOpen, onClose }) => {

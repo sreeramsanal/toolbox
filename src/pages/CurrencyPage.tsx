@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
+  ArrowLeft,
   ArrowLeftRight, 
   RefreshCw, 
   Hourglass, 
@@ -67,15 +68,25 @@ export const CurrencyPage: React.FC = () => {
       
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-        <div>
-          <div className="text-[11px] font-mono uppercase tracking-wider text-brand-cyan mb-1 flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-pulse"></span>
-            CURRENCY CONVERTER & RATES
+        <div className="flex items-center gap-3 sm:gap-3.5">
+          <Link
+            to="/"
+            title="Back to Home"
+            aria-label="Back to Home"
+            className="p-2 sm:p-2.5 rounded-xl border border-dark-border bg-dark-surface1 hover:bg-dark-surface2 text-dark-text-secondary hover:text-dark-text transition shadow-sm shrink-0"
+          >
+            <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+          </Link>
+          <div>
+            <div className="text-[11px] font-mono uppercase tracking-wider text-brand-cyan mb-1 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-pulse"></span>
+              CURRENCY CONVERTER & RATES
+            </div>
+            <h1 className="text-3xl font-bold tracking-tight text-dark-text">Currency Tracker</h1>
+            <p className="text-xs text-dark-text-muted mt-1">
+              Real-time exchange rates and instant currency conversion.
+            </p>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-dark-text">Currency Tracker</h1>
-          <p className="text-xs text-dark-text-muted mt-1">
-            Real-time exchange rates and instant currency conversion.
-          </p>
         </div>
 
         <div className="flex items-center gap-2">
@@ -135,12 +146,12 @@ export const CurrencyPage: React.FC = () => {
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
                 placeholder="100"
-                className="flex-1 bg-dark-surface1 text-dark-text text-2xl font-mono font-bold px-3.5 py-2.5 rounded-lg border border-dark-border focus:border-brand-cyan focus:outline-none tabular-nums"
+                className="flex-1 min-w-0 bg-dark-surface1 text-dark-text text-xl sm:text-2xl font-mono font-bold px-3.5 py-2.5 rounded-lg border border-dark-border focus:border-brand-cyan focus:outline-none tabular-nums"
               />
               <select
                 value={fromCurrency}
                 onChange={(e) => setFromCurrency(e.target.value)}
-                className="bg-dark-surface1 text-dark-text text-sm font-mono font-bold px-3 py-3 rounded-lg border border-dark-border focus:outline-none"
+                className="shrink-0 bg-dark-surface1 text-dark-text text-sm font-mono font-bold px-3 py-3 rounded-lg border border-dark-border focus:outline-none"
               >
                 {POPULAR_CURRENCIES.map(c => (
                   <option key={c} value={c}>{c}</option>
@@ -166,13 +177,13 @@ export const CurrencyPage: React.FC = () => {
               Receive Estimation
             </div>
             <div className="flex items-center justify-between gap-3">
-              <div className="text-2xl sm:text-3xl font-mono font-bold text-dark-text truncate tabular-nums">
+              <div className="flex-1 min-w-0 text-xl sm:text-2xl sm:text-3xl font-mono font-bold text-dark-text truncate tabular-nums">
                 {converted.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </div>
               <select
                 value={toCurrency}
                 onChange={(e) => setToCurrency(e.target.value)}
-                className="bg-dark-surface1 text-dark-text text-sm font-mono font-bold px-3 py-3 rounded-lg border border-dark-border focus:outline-none"
+                className="shrink-0 bg-dark-surface1 text-dark-text text-sm font-mono font-bold px-3 py-3 rounded-lg border border-dark-border focus:outline-none"
               >
                 {POPULAR_CURRENCIES.map(c => (
                   <option key={c} value={c}>{c}</option>

@@ -1,16 +1,30 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { 
   ShieldCheck, 
   Zap, 
   Sparkles, 
   CheckCircle2,
-  LayoutGrid
+  LayoutGrid,
+  ArrowLeft
 } from 'lucide-react';
 
 export const AboutPage: React.FC = () => {
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       
+      {/* Back button */}
+      <div className="mb-6">
+        <Link
+          to="/"
+          title="Back to Home"
+          aria-label="Back to Home"
+          className="p-2 sm:p-2.5 rounded-xl border border-dark-border bg-dark-surface1 hover:bg-dark-surface2 text-dark-text-secondary hover:text-dark-text transition shadow-sm inline-flex items-center justify-center shrink-0"
+        >
+          <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+        </Link>
+      </div>
+
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto mb-12">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-indigo/15 border border-brand-indigo/30 text-brand-indigo text-xs font-mono mb-4">
@@ -86,24 +100,12 @@ export const AboutPage: React.FC = () => {
             Clean article & content reader
           </div>
           <div className="p-2.5 rounded bg-dark-surface2 border border-dark-border">
-            <span className="text-dark-text font-semibold block">Weather</span>
-            Real-time conditions & forecasts
+            <span className="text-dark-text font-semibold block">GitHub Profile</span>
+            Developer stats & repositories
           </div>
           <div className="p-2.5 rounded bg-dark-surface2 border border-dark-border">
             <span className="text-dark-text font-semibold block">Issue Tracker</span>
             Local task & backlog organizer
-          </div>
-          <div className="p-2.5 rounded bg-dark-surface2 border border-dark-border">
-            <span className="text-dark-text font-semibold block">Calculator</span>
-            Math operations with tape history
-          </div>
-          <div className="p-2.5 rounded bg-dark-surface2 border border-dark-border">
-            <span className="text-dark-text font-semibold block">Countdown</span>
-            Milestone timers & celebrations
-          </div>
-          <div className="p-2.5 rounded bg-dark-surface2 border border-dark-border">
-            <span className="text-dark-text font-semibold block">Alarm Clock</span>
-            Custom time alerts & schedules
           </div>
           <div className="p-2.5 rounded bg-dark-surface2 border border-dark-border">
             <span className="text-dark-text font-semibold block">Currency</span>
@@ -114,8 +116,20 @@ export const AboutPage: React.FC = () => {
             Celsius, Fahrenheit & Kelvin
           </div>
           <div className="p-2.5 rounded bg-dark-surface2 border border-dark-border">
-            <span className="text-dark-text font-semibold block">GitHub Profile</span>
-            Developer stats & repositories
+            <span className="text-dark-text font-semibold block">Weather</span>
+            Real-time conditions & forecasts
+          </div>
+          <div className="p-2.5 rounded bg-dark-surface2 border border-dark-border">
+            <span className="text-dark-text font-semibold block">Countdown</span>
+            Milestone timers & celebrations
+          </div>
+          <div className="p-2.5 rounded bg-dark-surface2 border border-dark-border">
+            <span className="text-dark-text font-semibold block">Calculator</span>
+            Math operations with tape history
+          </div>
+          <div className="p-2.5 rounded bg-dark-surface2 border border-dark-border">
+            <span className="text-dark-text font-semibold block">Alarm Clock</span>
+            Custom time alerts & schedules
           </div>
         </div>
       </div>

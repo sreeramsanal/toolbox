@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   Search, 
   MapPin, 
@@ -11,7 +12,8 @@ import {
   Compass, 
   AlertCircle, 
   RefreshCw, 
-  Clock
+  Clock,
+  ArrowLeft
 } from 'lucide-react';
 import type { WeatherData, WeatherLocation } from '../types/weather';
 import { fetchWeather, searchCities, getCachedWeather } from '../services/weatherService';
@@ -75,15 +77,25 @@ export const WeatherPage: React.FC = () => {
       
       {/* Header Banner */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-        <div>
-          <div className="text-[11px] font-mono uppercase tracking-wider text-brand-cyan mb-1 flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-pulse"></span>
-            LIVE ATMOSPHERIC CONDITIONS
+        <div className="flex items-center gap-3 sm:gap-3.5">
+          <Link
+            to="/"
+            title="Back to Home"
+            aria-label="Back to Home"
+            className="p-2 sm:p-2.5 rounded-xl border border-dark-border bg-dark-surface1 hover:bg-dark-surface2 text-dark-text-secondary hover:text-dark-text transition shadow-sm shrink-0"
+          >
+            <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+          </Link>
+          <div>
+            <div className="text-[11px] font-mono uppercase tracking-wider text-brand-cyan mb-1 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-pulse"></span>
+              LIVE ATMOSPHERIC CONDITIONS
+            </div>
+            <h1 className="text-3xl font-bold tracking-tight text-dark-text">Weather</h1>
+            <p className="text-xs text-dark-text-muted mt-1">
+              Current atmospheric conditions and multi-day forecasting.
+            </p>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-dark-text">Weather</h1>
-          <p className="text-xs text-dark-text-muted mt-1">
-            Current atmospheric conditions and multi-day forecasting.
-          </p>
         </div>
 
         {weather && (
@@ -98,21 +110,21 @@ export const WeatherPage: React.FC = () => {
 
       {/* Search Bar & Presets */}
       <div className="p-4 rounded-xl bg-dark-surface1 border border-dark-border mb-8">
-        <form onSubmit={handleSearchSubmit} className="flex gap-2 mb-3">
-          <div className="relative flex-1">
+        <form onSubmit={handleSearchSubmit} className="flex flex-col sm:flex-row gap-2 mb-3">
+          <div className="relative flex-1 min-w-0">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-dark-text-muted" />
             <input
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search city (e.g., Paris, New York, Mumbai, Sydney)..."
-              className="w-full bg-dark-surface2 text-dark-text placeholder:text-dark-text-muted pl-10 pr-4 py-2.5 rounded-lg border border-dark-border focus:border-brand-indigo focus:outline-none text-xs font-medium"
+              className="w-full min-w-0 bg-dark-surface2 text-dark-text placeholder:text-dark-text-muted pl-10 pr-4 py-2.5 rounded-lg border border-dark-border focus:border-brand-indigo focus:outline-none text-xs font-medium"
             />
           </div>
           <button
             type="submit"
             disabled={isSearching || !query.trim()}
-            className="flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-brand-indigo hover:bg-brand-indigo/90 text-white text-xs font-medium transition disabled:opacity-50"
+            className="flex items-center justify-center shrink-0 gap-1.5 px-5 py-2.5 rounded-lg bg-brand-indigo hover:bg-brand-indigo/90 text-white text-xs font-medium transition disabled:opacity-50"
           >
             {isSearching ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <Search className="w-3.5 h-3.5" />}
             <span>Search</span>

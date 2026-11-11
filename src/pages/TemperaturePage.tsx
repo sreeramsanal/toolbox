@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
+  ArrowLeft,
   RotateCw, 
   Calculator as CalcIcon, 
   AlertTriangle
@@ -65,15 +66,25 @@ export const TemperaturePage: React.FC = () => {
       
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-        <div>
-          <div className="text-[11px] font-mono uppercase tracking-wider text-brand-cyan mb-1 flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-pulse"></span>
-            TEMPERATURE SCALE CONVERTER
+        <div className="flex items-center gap-3 sm:gap-3.5">
+          <Link
+            to="/"
+            title="Back to Home"
+            aria-label="Back to Home"
+            className="p-2 sm:p-2.5 rounded-xl border border-dark-border bg-dark-surface1 hover:bg-dark-surface2 text-dark-text-secondary hover:text-dark-text transition shadow-sm shrink-0"
+          >
+            <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+          </Link>
+          <div>
+            <div className="text-[11px] font-mono uppercase tracking-wider text-brand-cyan mb-1 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-pulse"></span>
+              TEMPERATURE SCALE CONVERTER
+            </div>
+            <h1 className="text-3xl font-bold tracking-tight text-dark-text">Temperature Converter</h1>
+            <p className="text-xs text-dark-text-muted mt-1">
+              Convert temperatures instantly across Celsius, Fahrenheit, and Kelvin scales.
+            </p>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-dark-text">Temperature Converter</h1>
-          <p className="text-xs text-dark-text-muted mt-1">
-            Convert temperatures instantly across Celsius, Fahrenheit, and Kelvin scales.
-          </p>
         </div>
 
         <div className="flex items-center gap-2">
@@ -105,13 +116,13 @@ export const TemperaturePage: React.FC = () => {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="25"
-                className="flex-1 bg-dark-surface1 text-dark-text text-3xl font-mono font-bold px-4 py-2.5 rounded-lg border border-dark-border focus:border-brand-cyan focus:outline-none tabular-nums"
+                className="flex-1 min-w-0 bg-dark-surface1 text-dark-text text-2xl sm:text-3xl font-mono font-bold px-4 py-2.5 rounded-lg border border-dark-border focus:border-brand-cyan focus:outline-none tabular-nums"
               />
 
               <select
                 value={sourceUnit}
                 onChange={(e) => setSourceUnit(e.target.value as Unit)}
-                className="bg-dark-surface1 text-dark-text text-sm font-semibold px-4 py-3 rounded-lg border border-dark-border focus:outline-none"
+                className="shrink-0 bg-dark-surface1 text-dark-text text-sm font-semibold px-4 py-3 rounded-lg border border-dark-border focus:outline-none"
               >
                 <option value="C">Celsius (°C)</option>
                 <option value="F">Fahrenheit (°F)</option>

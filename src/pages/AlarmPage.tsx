@@ -8,7 +8,8 @@ import {
   Check, 
   Hourglass, 
   DollarSign,
-  Calendar
+  Calendar,
+  ArrowLeft
 } from 'lucide-react';
 import type { AlarmItem, AlarmRepeat } from '../types/alarm';
 import { getStoredAlarms, saveStoredAlarms } from '../utils/localStorage';
@@ -125,15 +126,25 @@ export const AlarmPage: React.FC = () => {
       
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-        <div>
-          <div className="text-[11px] font-mono uppercase tracking-wider text-brand-purple mb-1 flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-purple animate-pulse"></span>
-            TIME ALERTS & SCHEDULES
+        <div className="flex items-center gap-3 sm:gap-3.5">
+          <Link
+            to="/"
+            title="Back to Home"
+            aria-label="Back to Home"
+            className="p-2 sm:p-2.5 rounded-xl border border-dark-border bg-dark-surface1 hover:bg-dark-surface2 text-dark-text-secondary hover:text-dark-text transition shadow-sm shrink-0"
+          >
+            <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+          </Link>
+          <div>
+            <div className="text-[11px] font-mono uppercase tracking-wider text-brand-purple mb-1 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-purple animate-pulse"></span>
+              TIME ALERTS & SCHEDULES
+            </div>
+            <h1 className="text-3xl font-bold tracking-tight text-dark-text">Alarm Clock</h1>
+            <p className="text-xs text-dark-text-muted mt-1">
+              Set custom alarms with repeatable schedules and audio alerts.
+            </p>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-dark-text">Alarm Clock</h1>
-          <p className="text-xs text-dark-text-muted mt-1">
-            Set custom alarms with repeatable schedules and audio alerts.
-          </p>
         </div>
 
         <div className="flex items-center gap-2">
@@ -296,7 +307,7 @@ export const AlarmPage: React.FC = () => {
             </div>
 
             <form onSubmit={handleAddAlarm} className="space-y-3 text-xs">
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block font-mono text-[10px] uppercase text-dark-text-muted mb-1">
                     Alarm Time *

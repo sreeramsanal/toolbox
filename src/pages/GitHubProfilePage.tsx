@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   Search, 
   ExternalLink, 
@@ -10,11 +11,12 @@ import {
   GitFork, 
   BookOpen, 
   AlertCircle, 
-  RefreshCw
+  RefreshCw,
+  ArrowLeft
 } from 'lucide-react';
 import { GithubIcon } from '../components/GithubIcon';
 import type { GitHubRepo, GitHubUserProfile } from '../types/github';
-import { fetchGitHubUser, fetchGitHubUserRepos, getCachedGitHubUser } from '../services/githubService';
+import { fetchGitHubUser, fetchGitHubUserRepos } from '../services/githubService';
 
 export const GitHubProfilePage: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -26,14 +28,6 @@ export const GitHubProfilePage: React.FC = () => {
   // Repo filter & sort
   const [repoSearch, setRepoSearch] = useState('');
   const [repoSort, setRepoSort] = useState<'stars' | 'forks' | 'updated'>('stars');
-
-  useEffect(() => {
-    const cached = getCachedGitHubUser();
-    if (cached) {
-      setProfile(cached);
-      setUsername(cached.login);
-    }
-  }, []);
 
   const loadUser = async (targetUser: string) => {
     if (!targetUser.trim()) return;
@@ -99,18 +93,28 @@ export const GitHubProfilePage: React.FC = () => {
       
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-        <div>
-          <div className="text-[11px] font-mono uppercase tracking-wider text-brand-indigo mb-1 flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-indigo animate-pulse"></span>
-            DEVELOPER PROFILE INSPECTOR
+        <div className="flex items-center gap-3 sm:gap-3.5">
+          <Link
+            to="/"
+            title="Back to Home"
+            aria-label="Back to Home"
+            className="p-2 sm:p-2.5 rounded-xl border border-dark-border bg-dark-surface1 hover:bg-dark-surface2 text-dark-text-secondary hover:text-dark-text transition shadow-sm shrink-0"
+          >
+            <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+          </Link>
+          <div>
+            <div className="text-[11px] font-mono uppercase tracking-wider text-brand-indigo mb-1 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-indigo animate-pulse"></span>
+              DEVELOPER PROFILE INSPECTOR
+            </div>
+            <h1 className="text-3xl font-bold tracking-tight text-dark-text">GitHub Profile</h1>
+            <p className="text-xs text-dark-text-muted mt-1">
+              Explore public developer profiles, code metrics, and repositories.
+            </p>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-dark-text">GitHub Profile</h1>
-          <p className="text-xs text-dark-text-muted mt-1">
-            Explore public developer profiles, code metrics, and repositories.
-          </p>
         </div>
 
-        <div className="flex items-center gap-2 text-xs font-mono text-dark-text-secondary bg-dark-surface1 px-3 py-1.5 rounded-lg border border-dark-border">
+        <div className="flex items-center gap-2 text-xs font-mono text-dark-text-secondary bg-dark-surface1 px-3 py-1.5 rounded-lg border border-dark-border self-start md:self-auto">
           <GithubIcon className="w-3.5 h-3.5 text-brand-indigo" />
           <span>Public Developer Profiles</span>
         </div>
@@ -118,9 +122,9 @@ export const GitHubProfilePage: React.FC = () => {
 
       {/* Search Bar & Quick Profile presets */}
       <div className="p-4 rounded-xl bg-dark-surface1 border border-dark-border mb-6">
-        <form onSubmit={handleSearchSubmit} className="flex gap-2 mb-3">
-          <div className="relative flex-1 flex items-center bg-dark-surface2 rounded-lg border border-dark-border focus-within:border-brand-indigo">
-            <span className="pl-3.5 font-mono text-xs text-dark-text-muted select-none">
+        <form onSubmit={handleSearchSubmit} className="flex flex-col sm:flex-row gap-2 mb-3">
+          <div className="relative flex-1 min-w-0 flex items-center bg-dark-surface2 rounded-lg border border-dark-border focus-within:border-brand-indigo">
+            <span className="pl-3.5 font-mono text-xs text-dark-text-muted select-none shrink-0">
               github.com/
             </span>
             <input
@@ -128,19 +132,18 @@ export const GitHubProfilePage: React.FC = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="username"
-              className="w-full bg-transparent text-dark-text placeholder:text-dark-text-muted px-2 py-2.5 text-xs font-mono font-medium focus:outline-none"
+              className="w-full min-w-0 bg-transparent text-dark-text placeholder:text-dark-text-muted px-2 py-2.5 text-xs font-mono font-medium focus:outline-none"
             />
           </div>
           <button
             type="submit"
             disabled={loading || !username.trim()}
-            className="flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-brand-indigo hover:bg-brand-indigo/90 text-white text-xs font-medium transition disabled:opacity-50"
+            className="flex items-center justify-center shrink-0 gap-1.5 px-5 py-2.5 rounded-lg bg-brand-indigo hover:bg-brand-indigo/90 text-white text-xs font-medium transition disabled:opacity-50"
           >
             {loading ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <Search className="w-3.5 h-3.5" />}
             <span>Search Profile</span>
           </button>
         </form>
-
       </div>
 
       {/* Error state */}

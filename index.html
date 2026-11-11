@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en" class="light">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
@@ -13,7 +13,10 @@
       (function() {
         try {
           const pref = localStorage.getItem('toolbox_theme_preference');
-          if (pref === 'light' || (!pref && window.matchMedia && !window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          if (pref === 'dark') {
+            document.documentElement.classList.remove('light');
+            document.documentElement.classList.add('dark');
+          } else {
             document.documentElement.classList.remove('dark');
             document.documentElement.classList.add('light');
           }

@@ -5,7 +5,8 @@ import {
   Check, 
   Trash2, 
   Clock, 
-  Thermometer
+  Thermometer,
+  ArrowLeft
 } from 'lucide-react';
 import type { CalculationHistoryItem } from '../types/calculator';
 import { getStoredCalcHistory, saveStoredCalcHistory } from '../utils/localStorage';
@@ -175,15 +176,25 @@ export const CalculatorPage: React.FC = () => {
       
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-        <div>
-          <div className="text-[11px] font-mono uppercase tracking-wider text-brand-emerald mb-1 flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-emerald animate-pulse"></span>
-            PRECISION ARITHMETIC
+        <div className="flex items-center gap-3 sm:gap-3.5">
+          <Link
+            to="/"
+            title="Back to Home"
+            aria-label="Back to Home"
+            className="p-2 sm:p-2.5 rounded-xl border border-dark-border bg-dark-surface1 hover:bg-dark-surface2 text-dark-text-secondary hover:text-dark-text transition shadow-sm shrink-0"
+          >
+            <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+          </Link>
+          <div>
+            <div className="text-[11px] font-mono uppercase tracking-wider text-brand-emerald mb-1 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-emerald animate-pulse"></span>
+              PRECISION ARITHMETIC
+            </div>
+            <h1 className="text-3xl font-bold tracking-tight text-dark-text">Calculator</h1>
+            <p className="text-xs text-dark-text-muted mt-1">
+              Fast, high-precision mathematical operations with history tape.
+            </p>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-dark-text">Calculator</h1>
-          <p className="text-xs text-dark-text-muted mt-1">
-            Fast, high-precision mathematical operations with history tape.
-          </p>
         </div>
 
         <div className="flex items-center gap-2">
